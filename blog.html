@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editorial — Shahi Beauty</title>
+  <meta name="description" content="Beauty blogs, skincare guides and hair tutorials curated by Shahi Beauty." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0c0806;
+      --surface:   #141009;
+      --surface2:  #1c1510;
+      --gold:      #C9A96E;
+      --gold-dark: #A07840;
+      --gold-light:#E8D5A3;
+      --rose:      #C48070;
+      --text:      rgba(255,255,255,0.88);
+      --text-soft: rgba(255,255,255,0.58);
+      --text-mute: rgba(255,255,255,0.30);
+      --border:    rgba(255,255,255,0.08);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; line-height:1.75; }
+    a { color:inherit; text-decoration:none; }
+
+    ::-webkit-scrollbar { width:4px; }
+    ::-webkit-scrollbar-track { background:var(--bg); }
+    ::-webkit-scrollbar-thumb { background:var(--gold-dark); border-radius:4px; }
+
+    /* Animations */
+    @keyframes fadeUp  { from{opacity:0;transform:translateY(28px);} to{opacity:1;transform:translateY(0);} }
+    @keyframes shimmer { 0%,100%{opacity:.4;} 50%{opacity:.9;} }
+    @keyframes lineDraw{ from{width:0;} to{width:56px;} }
+    @keyframes countUp { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }
+
+    .reveal       { opacity:0; transform:translateY(32px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal-left  { opacity:0; transform:translateX(-36px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal-right { opacity:0; transform:translateX(36px);  transition:opacity .7s ease,transform .7s ease; }
+    .reveal.visible,.reveal-left.visible,.reveal-right.visible { opacity:1; transform:none; }
+
+    /* ── Navbar ── */
+    .nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      height:68px; padding:0 52px;
+      display:flex; align-items:center; justify-content:space-between;
+      background:rgba(12,8,6,.9); backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; letter-spacing:2px; color:var(--gold-light); }
+    .nav-logo span { color:var(--gold); }
+    .nav-back {
+      display:flex; align-items:center; gap:8px;
+      font-size:12px; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--text-soft); transition:color .3s;
+    }
+    .nav-back:hover { color:var(--gold); }
+    .nav-back svg { width:15px; height:15px; }
+    .nav-links { display:flex; gap:32px; list-style:none; }
+    .nav-links a { font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-soft); transition:color .3s; }
+    .nav-links a:hover { color:var(--gold); }
+
+    /* ── Page Hero ── */
+    .page-hero {
+      margin-top:68px; padding:100px 52px 80px;
+      text-align:center; position:relative; overflow:hidden;
+    }
+    .page-hero::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse 70% 80% at 50% 0%, rgba(201,169,110,.10) 0%, transparent 65%);
+    }
+    .hero-particles { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+    .hero-particles span {
+      position:absolute; width:2px; height:2px; border-radius:50%;
+      background:var(--gold); animation:shimmer 3s ease-in-out infinite;
+    }
+    .hero-tag { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; animation:fadeUp .7s ease both; }
+    .hero-title {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(3.2rem,6vw,5.8rem); font-weight:300; line-height:1.1;
+      color:white; animation:fadeUp .8s .1s ease both;
+    }
+    .hero-title em { font-style:italic; color:var(--gold-light); }
+    .hero-sub { margin-top:18px; font-size:15px; color:var(--text-soft); max-width:500px; margin-inline:auto; animation:fadeUp .9s .2s ease both; }
+    .hero-rule { width:56px; height:1px; background:var(--gold); margin:28px auto 0; animation:lineDraw .9s .4s ease both; }
+
+    /* ── Layout helpers ── */
+    .section { padding:96px 0; }
+    .section-alt { background:var(--surface); }
+    .container { max-width:1160px; margin:0 auto; padding:0 52px; }
+    .eyebrow { display:flex; align-items:center; gap:14px; margin-bottom:14px; }
+    .eyebrow-line { width:36px; height:1px; background:var(--gold); }
+    .eyebrow-text { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); }
+    .section-heading {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(2rem,3.5vw,3rem); font-weight:600; line-height:1.2; color:white; margin-bottom:12px;
+    }
+    .section-sub { font-size:14px; color:var(--text-soft); max-width:520px; margin-bottom:56px; }
+
+    /* ── BEAUTY BLOG ── */
+    #beauty-blog { scroll-margin-top:68px; }
+
+    /* Lead article — text only, no image */
+    .lead-article {
+      display:grid; grid-template-columns:1fr 1px 1fr; gap:60px;
+      padding-bottom:56px; border-bottom:1px solid var(--border); margin-bottom:56px;
+    }
+    .lead-divider { background:var(--border); }
+    .lead-left { padding-right:8px; }
+    .lead-right { padding-left:8px; }
+    .article-cat {
+      display:inline-block; font-size:10px; letter-spacing:2.5px; text-transform:uppercase;
+      color:var(--gold); font-weight:700; margin-bottom:14px;
+      border-bottom:1px solid rgba(201,169,110,.35); padding-bottom:6px;
+    }
+    .lead-title {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(1.8rem,3vw,2.6rem); font-weight:600; line-height:1.25;
+      color:white; margin-bottom:16px;
+    }
+    .lead-subtitle {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(1.2rem,2vw,1.6rem); font-weight:400; font-style:italic;
+      line-height:1.3; color:var(--gold-light); margin-bottom:16px;
+    }
+    .article-meta {
+      font-size:11px; color:var(--text-mute); letter-spacing:1px; text-transform:uppercase;
+      margin-bottom:20px; display:flex; gap:14px; align-items:center;
+    }
+    .article-meta span { display:flex; align-items:center; gap:5px; }
+    .lead-body { font-size:14.5px; color:var(--text-soft); line-height:1.85; }
+    .lead-body p { margin-bottom:16px; }
+    .lead-body p:last-child { margin-bottom:0; }
+    .read-link {
+      display:inline-flex; align-items:center; gap:8px; margin-top:20px;
+      font-size:11px; letter-spacing:2px; text-transform:uppercase;
+      color:var(--gold); font-weight:600; transition:gap .3s;
+    }
+    .read-link:hover { gap:13px; }
+    .read-link svg { width:13px; height:13px; }
+
+    /* Article list — compact text rows */
+    .article-list { display:flex; flex-direction:column; gap:0; }
+    .article-row {
+      display:grid; grid-template-columns:80px 1fr auto;
+      gap:28px; align-items:start;
+      padding:28px 0; border-bottom:1px solid var(--border);
+      transition:background .3s;
+    }
+    .article-row:last-child { border-bottom:none; }
+    .article-row:hover { background:rgba(255,255,255,.02); }
+    .article-num {
+      font-family:'Cormorant Garamond',serif;
+      font-size:3.5rem; font-weight:300; color:rgba(201,169,110,.18);
+      line-height:1; text-align:right; padding-top:4px;
+    }
+    .article-row-body { min-width: 0; }
+    .article-row-cat { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+    .article-row-title {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.25rem; font-weight:600; color:white; margin-bottom:8px; line-height:1.3;
+    }
+    .article-row-excerpt { font-size:13px; color:var(--text-soft); line-height:1.7; max-width:580px; }
+    .article-row-meta { font-size:11px; color:var(--text-mute); white-space:nowrap; padding-top:6px; }
+
+    /* Full editorial essay */
+    .essay-wrap { display:grid; grid-template-columns:1fr 320px; gap:72px; align-items:start; }
+    .essay h3 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.55rem; font-weight:600; color:var(--gold-light);
+      margin:36px 0 14px;
+    }
+    .essay h3:first-child { margin-top:0; }
+    .essay p { font-size:15px; color:var(--text-soft); line-height:1.88; margin-bottom:18px; }
+    .essay p strong { color:var(--text); font-weight:600; }
+    .essay blockquote {
+      border-left:3px solid var(--gold);
+      padding:18px 26px; margin:28px 0;
+      background:rgba(201,169,110,.05); border-radius:0 12px 12px 0;
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.25rem; font-style:italic; color:var(--gold-light); line-height:1.6;
+    }
+    .essay ul { list-style:none; margin:0 0 24px; }
+    .essay ul li {
+      font-size:14px; color:var(--text-soft); line-height:1.75;
+      padding:10px 0 10px 20px; border-bottom:1px solid var(--border); position:relative;
+    }
+    .essay ul li::before { content:'✦'; position:absolute; left:0; color:var(--gold); font-size:9px; top:13px; }
+    .essay ul li:last-child { border-bottom:none; }
+
+    /* Sidebar */
+    .sidebar { position:sticky; top:90px; }
+    .sidebar-block {
+      background:var(--surface2); border:1px solid var(--border);
+      border-radius:16px; padding:26px; margin-bottom:22px;
+    }
+    .sidebar-heading {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1rem; font-weight:600; color:var(--gold-light);
+      border-bottom:1px solid var(--border); padding-bottom:12px; margin-bottom:18px;
+    }
+    .sidebar-link-list { list-style:none; }
+    .sidebar-link-list li { border-bottom:1px solid var(--border); }
+    .sidebar-link-list li:last-child { border-bottom:none; }
+    .sidebar-link-list a {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:11px 0; font-size:13px; color:var(--text-soft); transition:color .3s;
+    }
+    .sidebar-link-list a:hover { color:var(--gold); }
+    .sidebar-link-list a svg { width:12px; height:12px; opacity:.5; }
+    .tip-list { list-style:none; }
+    .tip-list li {
+      font-size:13px; color:var(--text-soft); padding:9px 0;
+      border-bottom:1px solid var(--border); display:flex; gap:10px;
+    }
+    .tip-list li:last-child { border-bottom:none; }
+    .tip-list li::before { content:'→'; color:var(--gold); flex-shrink:0; }
+    .tag-cloud { display:flex; flex-wrap:wrap; gap:7px; }
+    .tag {
+      font-size:11px; letter-spacing:1px; text-transform:uppercase;
+      border:1px solid var(--border); border-radius:50px;
+      padding:5px 13px; color:var(--text-mute); transition:border-color .3s,color .3s;
+      cursor:default;
+    }
+    .tag:hover { border-color:var(--gold); color:var(--gold); }
+
+    /* ── HAIR TUTORIALS ── */
+    #hair-tutorials { scroll-margin-top:68px; }
+
+    /* Intro strip */
+    .tutorial-intro {
+      display:grid; grid-template-columns:1fr 1fr; gap:60px;
+      padding:48px 56px; border-radius:20px;
+      background:var(--surface2); border:1px solid var(--border);
+      margin-bottom:64px;
+    }
+    .tutorial-intro-left { min-width: 0; }
+    .tutorial-intro-title {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(1.6rem,2.5vw,2.2rem); font-weight:600; color:white; margin-bottom:16px; line-height:1.3;
+    }
+    .tutorial-intro-text { font-size:14px; color:var(--text-soft); line-height:1.85; }
+    .tutorial-stats { display:flex; flex-direction:column; gap:24px; justify-content:center; }
+    .stat-row { display:flex; gap:20px; align-items:center; padding:16px 0; border-bottom:1px solid var(--border); }
+    .stat-row:last-child { border-bottom:none; }
+    .stat-num { font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:600; color:var(--gold); min-width:64px; }
+    .stat-label { font-size:13px; color:var(--text-soft); line-height:1.5; }
+    .stat-label strong { display:block; color:var(--text); font-size:13px; margin-bottom:2px; }
+
+    /* Tutorial cards — no images, structured text */
+    .tutorial-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:72px; }
+    .tutorial-card {
+      background:var(--surface2); border:1px solid var(--border);
+      border-radius:18px; padding:32px 28px;
+      transition:transform .35s, border-color .35s, box-shadow .35s;
+      position:relative; overflow:hidden;
+    }
+    .tutorial-card::before {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+      background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+      transform:scaleX(0); transform-origin:left; transition:transform .4s;
+    }
+    .tutorial-card:hover::before { transform:scaleX(1); }
+    .tutorial-card:hover { transform:translateY(-5px); border-color:rgba(201,169,110,.25); box-shadow:0 18px 48px rgba(0,0,0,.35); }
+    .tutorial-level {
+      display:inline-block; font-size:10px; letter-spacing:1.5px; text-transform:uppercase;
+      font-weight:700; padding:4px 12px; border-radius:50px; margin-bottom:20px;
+    }
+    .level-beginner    { background:rgba(34,197,94,.12);  color:#86efac; border:1px solid rgba(34,197,94,.25); }
+    .level-intermediate{ background:rgba(201,169,110,.12);color:var(--gold-light); border:1px solid rgba(201,169,110,.25); }
+    .level-advanced    { background:rgba(196,128,112,.12);color:#f4b8a8; border:1px solid rgba(196,128,112,.25); }
+    .tutorial-duration { font-size:11px; color:var(--text-mute); margin-bottom:14px; }
+    .tutorial-card-title {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.3rem; font-weight:600; color:white; margin-bottom:12px; line-height:1.3;
+    }
+    .tutorial-card-desc { font-size:13px; color:var(--text-soft); line-height:1.75; margin-bottom:22px; }
+    .tutorial-tags { display:flex; flex-wrap:wrap; gap:7px; }
+    .tutorial-tags span {
+      font-size:10px; letter-spacing:1px; text-transform:uppercase;
+      color:var(--text-mute); background:rgba(255,255,255,.05);
+      padding:4px 10px; border-radius:50px;
+    }
+
+    /* Full tutorial deep-dive */
+    .tutorial-deep { display:grid; grid-template-columns:1fr 320px; gap:72px; align-items:start; }
+    .tutorial-body h3 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.5rem; font-weight:600; color:var(--gold-light); margin:36px 0 14px;
+    }
+    .tutorial-body h3:first-child { margin-top:0; }
+    .tutorial-body p { font-size:15px; color:var(--text-soft); line-height:1.88; margin-bottom:18px; }
+    .tutorial-body p strong { color:var(--text); }
+    .tutorial-body blockquote {
+      border-left:3px solid var(--gold); padding:18px 26px; margin:28px 0;
+      background:rgba(201,169,110,.05); border-radius:0 12px 12px 0;
+      font-family:'Cormorant Garamond',serif; font-size:1.2rem;
+      font-style:italic; color:var(--gold-light); line-height:1.65;
+    }
+
+    /* Numbered step list */
+    .steps { list-style:none; margin-bottom:32px; }
+    .step {
+      display:flex; gap:20px; align-items:flex-start;
+      padding:20px 0; border-bottom:1px solid var(--border);
+    }
+    .step:last-child { border-bottom:none; }
+    .step-num {
+      width:36px; height:36px; border-radius:50%; flex-shrink:0;
+      background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+      color:#0c0806; font-weight:700; font-size:13px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .step-content strong { display:block; color:var(--text); font-size:14px; margin-bottom:5px; }
+    .step-content span   { font-size:13.5px; color:var(--text-soft); line-height:1.75; }
+    .step-content em     { display:block; font-size:12px; color:var(--text-mute); margin-top:5px; font-style:italic; }
+
+    /* Hair type comparison table */
+    .hair-table { width:100%; border-collapse:collapse; margin:28px 0 36px; }
+    .hair-table th {
+      font-size:11px; letter-spacing:2px; text-transform:uppercase;
+      color:var(--gold); font-weight:600; text-align:left;
+      padding:12px 16px; border-bottom:1px solid var(--border);
+      background:rgba(201,169,110,.05);
+    }
+    .hair-table td {
+      font-size:13px; color:var(--text-soft); padding:13px 16px;
+      border-bottom:1px solid var(--border); vertical-align:top; line-height:1.65;
+    }
+    .hair-table tr:last-child td { border-bottom:none; }
+    .hair-table td:first-child { color:var(--text); font-weight:500; white-space:nowrap; }
+
+    /* ── SKINCARE GUIDE ── */
+    #skincare-guide { scroll-margin-top:68px; }
+
+    /* Intro banner — pure text */
+    .guide-banner {
+      padding:60px; border-radius:22px;
+      border:1px solid var(--border); margin-bottom:72px;
+      background:linear-gradient(135deg, var(--surface2) 0%, rgba(28,21,16,0.6) 100%);
+      position:relative; overflow:hidden;
+    }
+    .guide-banner::before {
+      content:''; position:absolute; top:-80px; right:-80px;
+      width:340px; height:340px; border-radius:50%;
+      background:radial-gradient(circle, rgba(201,169,110,.1) 0%, transparent 70%);
+    }
+    .guide-banner-inner { max-width:680px; position:relative; }
+    .guide-banner-tag { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+    .guide-banner-title {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(2rem,4vw,3rem); font-weight:600; color:white; line-height:1.25; margin-bottom:20px;
+    }
+    .guide-banner-text { font-size:15px; color:var(--text-soft); line-height:1.85; margin-bottom:28px; }
+    .guide-banner-stats { display:flex; gap:40px; flex-wrap:wrap; }
+    .gstat-num {
+      font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:300;
+      color:var(--gold-light); line-height:1;
+    }
+    .gstat-label { font-size:12px; color:var(--text-mute); margin-top:4px; }
+
+    /* Three pillars */
+    .pillars-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:72px; }
+    .pillar {
+      border-radius:18px; border:1px solid var(--border);
+      background:var(--surface2); padding:32px 28px;
+      position:relative; overflow:hidden; transition:transform .35s, border-color .35s;
+    }
+    .pillar:hover { transform:translateY(-4px); border-color:rgba(201,169,110,.2); }
+    .pillar::after {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+      background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+      transform:scaleX(0); transform-origin:left; transition:transform .4s;
+    }
+    .pillar:hover::after { transform:scaleX(1); }
+    .pillar-icon { font-size:26px; margin-bottom:16px; }
+    .pillar-title { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:600; color:white; margin-bottom:10px; }
+    .pillar-text { font-size:13px; color:var(--text-soft); line-height:1.75; }
+
+    /* AM / PM routine */
+    .routine-grid { display:grid; grid-template-columns:1fr 1fr; gap:36px; margin-bottom:72px; }
+    .routine-block {
+      background:var(--surface2); border:1px solid var(--border);
+      border-radius:20px; padding:38px 34px;
+    }
+    .routine-header { display:flex; align-items:center; gap:16px; margin-bottom:30px; }
+    .routine-icon { font-size:22px; }
+    .routine-title { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; color:white; }
+    .routine-sub { font-size:12px; color:var(--text-mute); letter-spacing:1px; }
+    .routine-step { display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid var(--border); }
+    .routine-step:last-child { border-bottom:none; }
+    .rnum {
+      width:26px; height:26px; border-radius:50%; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+      font-size:11px; font-weight:700; color:#0c0806;
+    }
+    .rnum.am { background:linear-gradient(135deg,#f4d06f,#e8a83a); }
+    .rnum.pm { background:linear-gradient(135deg,#b08fc8,#7c5a9e); }
+    .routine-step-body strong { display:block; font-size:13px; color:var(--text); margin-bottom:3px; }
+    .routine-step-body span { font-size:12.5px; color:var(--text-soft); line-height:1.65; }
+    .routine-step-body em { display:block; font-size:11.5px; color:var(--text-mute); margin-top:4px; font-style:italic; }
+
+    /* Ingredients grid */
+    .ingredients { margin-bottom:72px; }
+    .ingredient-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+    .ingredient {
+      background:var(--surface2); border:1px solid var(--border);
+      border-radius:15px; padding:26px 22px;
+      transition:transform .3s, border-color .3s;
+    }
+    .ingredient:hover { transform:translateY(-4px); border-color:rgba(201,169,110,.2); }
+    .ingredient-icon { font-size:24px; margin-bottom:12px; }
+    .ingredient-name { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:600; color:var(--gold-light); margin-bottom:8px; }
+    .ingredient-desc { font-size:12.5px; color:var(--text-soft); line-height:1.7; }
+    .ingredient-type { margin-top:10px; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--text-mute); }
+
+    /* Myths & Facts */
+    .myths-wrap {
+      background:var(--surface2); border:1px solid var(--border);
+      border-radius:22px; padding:56px;
+    }
+    .myth-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:36px; }
+    .myth-card { border-radius:14px; overflow:hidden; border:1px solid var(--border); }
+    .myth-card-header { padding:14px 22px; display:flex; gap:12px; align-items:center; }
+    .myth-card-header.myth-bg { background:rgba(239,68,68,.07); }
+    .myth-card-header.fact-bg { background:rgba(34,197,94,.07); }
+    .myth-badge {
+      font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:700;
+      padding:4px 12px; border-radius:50px;
+    }
+    .myth-badge.myth { background:rgba(239,68,68,.2); color:#fca5a5; }
+    .myth-badge.fact { background:rgba(34,197,94,.2);  color:#86efac; }
+    .myth-claim { font-size:13px; color:var(--text-soft); font-style:italic; }
+    .myth-card-body { padding:14px 22px 20px; font-size:13px; color:var(--text-soft); line-height:1.75; }
+
+    /* Skincare full guide */
+    .guide-deep { display:grid; grid-template-columns:1fr 320px; gap:72px; align-items:start; }
+    .guide-body h3 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.5rem; font-weight:600; color:var(--gold-light); margin:36px 0 14px;
+    }
+    .guide-body h3:first-child { margin-top:0; }
+    .guide-body p { font-size:15px; color:var(--text-soft); line-height:1.88; margin-bottom:18px; }
+    .guide-body p strong { color:var(--text); }
+    .guide-body blockquote {
+      border-left:3px solid var(--gold); padding:18px 26px; margin:28px 0;
+      background:rgba(201,169,110,.05); border-radius:0 12px 12px 0;
+      font-family:'Cormorant Garamond',serif; font-size:1.2rem;
+      font-style:italic; color:var(--gold-light); line-height:1.65;
+    }
+    .guide-body ul { list-style:none; margin:0 0 22px; }
+    .guide-body ul li {
+      font-size:14px; color:var(--text-soft); padding:10px 0 10px 20px;
+      border-bottom:1px solid var(--border); position:relative; line-height:1.7;
+    }
+    .guide-body ul li::before { content:'✦'; position:absolute; left:0; color:var(--gold); font-size:9px; top:13px; }
+    .guide-body ul li:last-child { border-bottom:none; }
+
+    /* CTA button */
+    .cta-btn {
+      display:inline-flex; align-items:center; gap:10px;
+      background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+      color:#0c0806; font-size:11px; letter-spacing:2px; text-transform:uppercase;
+      font-weight:700; padding:13px 28px; border-radius:50px;
+      transition:transform .3s, box-shadow .3s; width:fit-content;
+    }
+    .cta-btn:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(201,169,110,.28); }
+
+    /* ── Footer ── */
+    .blog-footer {
+      background:var(--surface); border-top:1px solid var(--border);
+      padding:44px 52px;
+      display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;
+    }
+    .footer-logo { font-family:'Cormorant Garamond',serif; font-size:1.3rem; letter-spacing:2px; color:var(--gold-light); }
+    .footer-logo span { color:var(--gold); }
+    .footer-note { font-size:12px; color:var(--text-mute); max-width:400px; }
+    .footer-back {
+      display:flex; align-items:center; gap:8px;
+      font-size:11px; letter-spacing:2px; text-transform:uppercase;
+      color:var(--gold); transition:gap .3s;
+    }
+    .footer-back:hover { gap:13px; }
+
+    /* ── Responsive ── */
+    @media(max-width:1024px) {
+      .lead-article { grid-template-columns:1fr; }
+      .lead-divider { display:none; }
+      .essay-wrap,.tutorial-deep,.guide-deep { grid-template-columns:1fr; }
+      .sidebar { position:static; }
+      .tutorial-grid { grid-template-columns:1fr 1fr; }
+      .ingredient-grid { grid-template-columns:1fr 1fr; }
+      .myth-grid { grid-template-columns:1fr; }
+      .tutorial-intro { grid-template-columns:1fr; gap:36px; }
+      .routine-grid { grid-template-columns:1fr; }
+      .pillars-grid { grid-template-columns:1fr; }
+      .guide-banner-stats { gap:28px; }
+    }
+    @media(max-width:768px) {
+      .nav { padding:0 24px; }
+      .nav-links { display:none; }
+      .container { padding:0 24px; }
+      .section { padding:64px 0; }
+      .page-hero { padding:72px 24px 56px; }
+      .tutorial-grid { grid-template-columns:1fr; }
+      .ingredient-grid { grid-template-columns:1fr 1fr; }
+      .guide-banner { padding:36px 28px; }
+      .myths-wrap { padding:32px 22px; }
+      .tutorial-intro { padding:32px 28px; }
+      .blog-footer { flex-direction:column; text-align:center; padding:36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══════════════════════════════════════ -->
+  <nav class="nav">
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
+      Back to Shop
+    </a>
+    <div class="nav-logo">Shahi<span>Beauty</span></div>
+    <ul class="nav-links">
+      <li><a href="#beauty-blog">Blog</a></li>
+      <li><a href="#hair-tutorials">Hair</a></li>
+      <li><a href="#skincare-guide">Skincare</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══ PAGE HERO ════════════════════════════════════ -->
+  <header class="page-hero">
+    <div class="hero-particles" id="particles"></div>
+    <p class="hero-tag">✦ The Shahi Beauty Editorial</p>
+    <h1 class="hero-title">Beauty, <em>Elevated</em><br/>by Knowledge</h1>
+    <p class="hero-sub">Expert guides, honest tutorials and thoughtful beauty writing — because great skin starts with understanding it.</p>
+    <div class="hero-rule"></div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 1 — BEAUTY BLOG
+  ══════════════════════════════════════════════════════ -->
+  <section class="section" id="beauty-blog">
+    <div class="container">
+
+      <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Beauty Blog</span></div>
+      <h2 class="section-heading reveal">Stories Worth Reading</h2>
+      <p class="section-sub reveal">Honest beauty writing that cuts through the noise — no sponsorships, no filler.</p>
+
+      <!-- Two lead articles side by side, text only -->
+      <div class="lead-article reveal">
+        <div class="lead-left">
+          <span class="article-cat">Featured Essay</span>
+          <h2 class="lead-title">The Art of Effortless Beauty: Why Less Is Always More</h2>
+          <div class="article-meta">
+            <span>April 2025</span>
+            <span>·</span>
+            <span>6 min read</span>
+          </div>
+          <div class="lead-body">
+            <p>In a world flooded with 12-step routines and endless product launches, the most radical act in beauty right now is restraint. We are sold complexity — but the science of skincare points stubbornly in the opposite direction.</p>
+            <p>The average person who achieves consistently clear, glowing skin does not have a vast collection. They have a small, deliberate one. They have learned that active ingredients need time to work, that introducing too many variables makes it impossible to know what is actually helping, and that a disrupted skin barrier is at the root of almost every skin complaint.</p>
+            <p>Minimalism in beauty is not about spending less — it is about spending better. One truly excellent cleanser, one antioxidant serum, one reliable moisturiser, and a non-negotiable SPF will outperform twelve mediocre products every single time.</p>
+          </div>
+          <a href="#" class="read-link">Continue Reading <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="lead-divider"></div>
+        <div class="lead-right">
+          <span class="article-cat">Opinion</span>
+          <h2 class="lead-subtitle">"Beauty Supplements: Science or Marketing?"</h2>
+          <div class="article-meta">
+            <span>March 2025</span>
+            <span>·</span>
+            <span>4 min read</span>
+          </div>
+          <div class="lead-body">
+            <p>The ingestible beauty market is projected to exceed $9 billion globally by 2027. Collagen powders, hair growth capsules, glow supplements — they promise results that your serum alone cannot deliver. But do they actually work?</p>
+            <p>The honest answer is nuanced. Hydrolysed collagen peptides do show statistically significant improvements in skin elasticity and hydration in multiple double-blind trials — but the effect size varies considerably. Biotin supplementation for hair growth has strong evidence only in cases of actual biotin deficiency, which is rarer than marketing implies.</p>
+            <p>Where ingestibles genuinely shine is in addressing root causes — nutritional gaps, hormonal shifts, and chronic inflammation — that topical products cannot reach. Products like Nutrafol target six distinct physiological pathways for hair thinning, which is why clinical results are more compelling than standard biotin supplements.</p>
+          </div>
+          <a href="#" class="read-link">Continue Reading <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <!-- Article index list -->
+      <div class="article-list reveal">
+        <div class="article-row">
+          <div class="article-num">01</div>
+          <div class="article-row-body">
+            <p class="article-row-cat">Wellness &amp; Aging</p>
+            <h3 class="article-row-title">Aging Gracefully: Rewriting the Narrative Around Anti-Aging Skincare</h3>
+            <p class="article-row-excerpt">Real anti-aging is not about erasing years — it is about understanding your skin's changing needs and honouring them. After 35, cell turnover slows, collagen production declines by roughly 1% per year, and the barrier thins. The right response is not more products. It is smarter ones. Retinoids, ceramides, peptides, and consistent SPF are the evidence-based pillars of every dermatologist-recommended anti-aging protocol.</p>
+          </div>
+          <div class="article-row-meta">Feb 2025<br/>5 min</div>
+        </div>
+        <div class="article-row">
+          <div class="article-num">02</div>
+          <div class="article-row-body">
+            <p class="article-row-cat">Lifestyle</p>
+            <h3 class="article-row-title">The Ritual of Fragrance: How Scent Shapes Mood, Memory and Identity</h3>
+            <p class="article-row-excerpt">Scent bypasses the rational brain and speaks directly to the limbic system — the seat of memory and emotion. This is why a particular perfume can transport you to a specific afternoon in your twenties with disorienting precision. Building a fragrance wardrobe is not vanity; it is a deliberate practice of emotional self-regulation. We explore the science of olfactory memory and how to choose scents that genuinely work for your skin chemistry.</p>
+          </div>
+          <div class="article-row-meta">Jan 2025<br/>3 min</div>
+        </div>
+        <div class="article-row">
+          <div class="article-num">03</div>
+          <div class="article-row-body">
+            <p class="article-row-cat">Ingredient Science</p>
+            <h3 class="article-row-title">The pH Problem: Why Your Skincare Routine Might Be Working Against Itself</h3>
+            <p class="article-row-excerpt">Healthy skin sits at a pH of 4.5–5.5. Many common cleansers have a pH of 8 or higher. The moment you disrupt your skin's acid mantle with an alkaline cleanser, you compromise the barrier, alter the microbiome, and render your subsequent actives significantly less effective. Understanding product pH is not advanced knowledge — it is foundational. We break down which products to use in which order and why the sequence actually matters.</p>
+          </div>
+          <div class="article-row-meta">Dec 2024<br/>7 min</div>
+        </div>
+        <div class="article-row">
+          <div class="article-num">04</div>
+          <div class="article-row-body">
+            <p class="article-row-cat">Colour &amp; Makeup</p>
+            <h3 class="article-row-title">The Case for a Curated Makeup Bag: Five Products That Do the Work of Twenty</h3>
+            <p class="article-row-excerpt">The beauty industry's dirtiest secret is that most makeup collections contain significant redundancy. Three near-identical nude lipsticks. Four foundations that were all bought in optimistic daylight and worn approximately twice. The shift toward multipurpose, high-performance products — baked palettes that work for eyes, cheeks and contour; lip stains that outlast any lipstick — is not a trend. It is a smarter way to approach colour.</p>
+          </div>
+          <div class="article-row-meta">Nov 2024<br/>4 min</div>
+        </div>
+      </div>
+
+      <!-- Full essay with sidebar -->
+      <div style="margin-top:80px;">
+        <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Full Essay</span></div>
+        <div class="essay-wrap">
+          <div class="essay reveal-left">
+            <h3>The Quiet Revolution in Modern Beauty</h3>
+            <p>For the better part of two decades, the beauty industry sold us complexity. A cleanser was never just a cleanser — it needed a toner, an essence, a serum, a second serum, a moisturiser, an SPF, and a weekly exfoliant. Our bathroom shelves groaned under the weight of it all.</p>
+            <p>But something shifted. Quietly, then all at once. Dermatologists began publishing about the harm of over-cleansing. Estheticians warned about sensitised skin caused by over-exfoliation. Consumers — exhausted, blotchy, and genuinely frustrated — began pushing back. The 10-step routine became a punchline.</p>
+            <blockquote>"The most effective skincare routine is the one you actually follow — consistently, without drama, every single night."</blockquote>
+            <h3>What Ingredient Literacy Changed</h3>
+            <p>The rise of ingredient-literate consumers changed the entire industry dynamic. When people started reading the backs of bottles, brands could no longer hide behind marketing language. A product needed to actually perform — or face the wrath of a well-researched forum thread.</p>
+            <p><strong>Niacinamide</strong> became the everyman's active — affordable, extensively researched, and gentle enough for almost every skin type. <strong>Vitamin C</strong> graduated from luxury serums to accessible daily use. <strong>Retinol</strong> stopped being intimidating once the distinction between prescription tretinoin and cosmetic retinol esters was widely understood.</p>
+            <ul>
+              <li>Fewer, better products consistently outperform a crowded shelf of mediocre ones</li>
+              <li>Skin barrier health is the foundation of every other skin concern</li>
+              <li>SPF is the single most effective anti-aging product available, full stop</li>
+              <li>Consistency over months matters infinitely more than any individual product choice</li>
+              <li>Skin type changes with age, season, stress, and hormonal shifts — your routine should adapt accordingly</li>
+              <li>Patch-testing every new active for 48 hours prevents sensitisation reactions before they spread</li>
+            </ul>
+            <h3>The Case for Curation</h3>
+            <p>At Shahi Beauty, we hand-test and curate every product on this site. Nothing earns a recommendation that has not earned genuine trust. Our approach is straightforward: identify the best-in-class product for a specific concern, verify the formulation integrity, check the clinical data where it exists, and present it without inflated claims.</p>
+            <p>Beauty should feel like an act of care — not a chore, and never a source of anxiety. The right products, chosen thoughtfully and used consistently, will always outperform an ever-expanding collection of impulse purchases made because an algorithm said so.</p>
+            <p>The revolution in modern beauty is not about new ingredients or new technology. It is about a more mature relationship with what we put on our skin — one built on knowledge, patience, and the quiet confidence that comes from a routine that actually works.</p>
+          </div>
+          <aside class="sidebar reveal-right">
+            <div class="sidebar-block">
+              <h4 class="sidebar-heading">✦ Featured Products</h4>
+              <ul class="sidebar-link-list">
+                <li><a href="https://amzn.to/48uoryD" target="_blank" rel="noopener noreferrer">Amino Acid Face Wash <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+                <li><a href="https://amzn.to/41rg6YM" target="_blank" rel="noopener noreferrer">Microbiome Night Mask <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+                <li><a href="https://amzn.to/4tG6HbO" target="_blank" rel="noopener noreferrer">Ginseng Anti-Aging Set <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+                <li><a href="https://amzn.to/4moHeRL" target="_blank" rel="noopener noreferrer">Nutrafol Women's Balance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+              </ul>
+            </div>
+            <div class="sidebar-block">
+              <h4 class="sidebar-heading">Quick Tips</h4>
+              <ul class="tip-list">
+                <li>Apply SPF 30 minutes before sun exposure, not after</li>
+                <li>Vitamin C and niacinamide can be safely layered — the old myth is debunked</li>
+                <li>Retinol works best applied to dry skin — reduces irritation significantly</li>
+                <li>Your neck and décolletage deserve the same routine as your face</li>
+                <li>Introduce new actives one at a time, two weeks apart</li>
+              </ul>
+            </div>
+            <div class="sidebar-block">
+              <h4 class="sidebar-heading">Topics</h4>
+              <div class="tag-cloud">
+                <span class="tag">Barrier</span>
+                <span class="tag">Actives</span>
+                <span class="tag">SPF</span>
+                <span class="tag">Retinol</span>
+                <span class="tag">Routine</span>
+                <span class="tag">Aging</span>
+                <span class="tag">Microbiome</span>
+                <span class="tag">Fragrance</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 2 — HAIR TUTORIALS
+  ══════════════════════════════════════════════════════ -->
+  <section class="section section-alt" id="hair-tutorials">
+    <div class="container">
+
+      <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Hair Tutorials</span></div>
+      <h2 class="section-heading reveal">Your Hair, Your Best Accessory</h2>
+      <p class="section-sub reveal">Step-by-step guidance for every hair type and concern — with honest product recommendations that genuinely perform.</p>
+
+      <!-- Intro panel -->
+      <div class="tutorial-intro reveal">
+        <div class="tutorial-intro-left">
+          <h3 class="tutorial-intro-title">Why Most Hair Routines Fail — And How to Fix Yours</h3>
+          <p class="tutorial-intro-text">Hair damage is almost always cumulative and largely preventable. The three biggest contributors are mechanical damage (brushing wet hair, tight hairstyles), heat damage (incorrect temperature, no protection), and chemical damage (overlapping colour, bleach misuse). Understanding which category your damage falls into determines which treatment approach will actually work.</p>
+          <br/>
+          <p class="tutorial-intro-text">Equally misunderstood is scalp health. Your scalp is skin — it has the same microbiome considerations, the same barrier function needs, and the same sensitivity to over-cleansing as your face. Neglecting it is the most common cause of hair thinning that people mistakenly attribute to genetics.</p>
+        </div>
+        <div class="tutorial-stats">
+          <div class="stat-row">
+            <div class="stat-num">80%</div>
+            <div class="stat-label"><strong>of hair breakage</strong> occurs during detangling — almost entirely preventable with correct technique and a wide-tooth comb on dry hair before washing</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-num">93%</div>
+            <div class="stat-label"><strong>of Nutrafol users</strong> felt their hair looked healthier after 6 months of consistent supplementation in clinical trials</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-num">6×</div>
+            <div class="stat-label"><strong>more friction</strong> from a regular cotton pillowcase compared to silk — a leading cause of overnight mechanical hair damage</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tutorial cards — text only -->
+      <div class="tutorial-grid">
+        <div class="tutorial-card reveal" style="transition-delay:0s">
+          <span class="tutorial-level level-beginner">Beginner</span>
+          <p class="tutorial-duration">⏱ 5 min read · Scalp Care</p>
+          <h4 class="tutorial-card-title">How to Apply Scalp Serum Correctly for Maximum Absorption</h4>
+          <p class="tutorial-card-desc">Most people apply scalp serum the same way they apply shampoo — all over, no precision, rubbed in and forgotten. The technique is fundamentally wrong. Scalp serums contain targeted actives that need to reach the follicle directly. Sectioning the hair and applying to partings, followed by a targeted massage to increase blood circulation, doubles absorption compared to unsectioned application. The massage itself — two minutes of firm circular motion — has measurable benefit on follicle stimulation independent of the serum.</p>
+          <div class="tutorial-tags"><span>Parting Method</span><span>Massage Technique</span><span>Absorption</span></div>
+        </div>
+        <div class="tutorial-card reveal" style="transition-delay:.1s">
+          <span class="tutorial-level level-beginner">Beginner</span>
+          <p class="tutorial-duration">⏱ 8 min read · Cleansing</p>
+          <h4 class="tutorial-card-title">The Double Cleanse Method for Fine Hair That Builds Volume, Not Buildup</h4>
+          <p class="tutorial-card-desc">Fine hair accumulates product residue faster than any other type. This buildup flattens the hair, suffocates follicles, and creates the illusion of thinning. The double cleanse method uses a diluted first pass to emulsify residue and a focused second pass on the scalp only — the OUAI Fine Hair Shampoo formula is ideal because it cleanses without stripping the oils that give fine hair its natural movement. The key is temperature: lukewarm during washing, cold rinse to close the cuticle and maximise shine.</p>
+          <div class="tutorial-tags"><span>Fine Hair</span><span>Volume</span><span>Buildup Removal</span></div>
+        </div>
+        <div class="tutorial-card reveal" style="transition-delay:.2s">
+          <span class="tutorial-level level-intermediate">Intermediate</span>
+          <p class="tutorial-duration">⏱ 10 min read · Repair</p>
+          <h4 class="tutorial-card-title">Bond-Building Oil: The Three-Use Method for Glass Hair at Home</h4>
+          <p class="tutorial-card-desc">Olaplex No.7 is one of the most versatile haircare products available — but most people use it in one mode only. Used pre-blowdry, it provides thermal protection up to 450°F while repairing broken disulfide bonds in the hair's protein structure. Applied post-style to dry hair, it delivers mirror shine and frizz control without weight. Used overnight on damp, braided hair, it constitutes a genuine bond-repair treatment. Each application serves a completely different purpose — the product's concentration is low enough to be safe for all three uses within a single routine.</p>
+          <div class="tutorial-tags"><span>Heat Protection</span><span>Bond Repair</span><span>Glass Hair</span></div>
+        </div>
+      </div>
+
+      <!-- Full tutorial deep dive -->
+      <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Deep Dive</span></div>
+      <div class="tutorial-deep">
+        <div class="tutorial-body reveal-left">
+          <h3>Understanding Hair Porosity — The Variable That Changes Everything</h3>
+          <p>Hair porosity determines which products will work for your hair and which will simply sit on top of it, wasting your money and frustrating your efforts. It refers to the cuticle layer's ability to absorb and retain moisture — and it is the most overlooked factor in hair diagnosis.</p>
+          <p><strong>Low porosity hair</strong> has a tightly sealed, overlapping cuticle. Products struggle to penetrate, leading to visible buildup and limp hair. These types need heat — a shower cap or warm towel over a conditioning treatment — to temporarily lift the cuticle and allow absorption. Lightweight, water-based leave-ins perform far better than heavy butters or oils on low porosity hair.</p>
+          <p><strong>High porosity hair</strong> — often from chemical processing, repeated heat, or genetic predisposition — has a raised, damaged cuticle that absorbs moisture quickly but loses it just as fast. It craves protein treatments and dense emollients. Olaplex's bond-building chemistry was specifically engineered for this profile: it works by relinking broken disulfide bonds in the cortex that no surface conditioning agent can reach.</p>
+
+          <h3>How to Identify Your Porosity</h3>
+          <table class="hair-table">
+            <thead>
+              <tr><th>Porosity</th><th>Signs</th><th>Best Approach</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Low</td>
+                <td>Takes long to get fully wet; products sit on hair; rarely frizzy; hard to colour evenly</td>
+                <td>Heat during conditioning; lightweight water-based leave-ins; clarifying shampoo monthly</td>
+              </tr>
+              <tr>
+                <td>Medium</td>
+                <td>Absorbs moisture easily; holds styles well; colour processes predictably</td>
+                <td>Standard balanced routine; maintenance-focused rather than repair-focused</td>
+              </tr>
+              <tr>
+                <td>High</td>
+                <td>Dries quickly; frizzy in humidity; absorbs products fast; colour fades quickly</td>
+                <td>Protein + moisture balance; bond-building treatments; cold rinse to seal cuticle</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>The Complete Repair Routine: Step by Step</h3>
+          <ol class="steps">
+            <li class="step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <strong>Pre-wash scalp treatment (20–30 minutes before)</strong>
+                <span>Apply Root Replenish Scalp Serum directly to dry scalp, parting hair into four sections. Massage firmly in circular motions for three full minutes. This stimulates microcirculation in the follicle bed and allows the active growth peptides to penetrate before water dilutes them.</span>
+                <em>Do not apply to hair lengths — scalp serum is formulated for the scalp only</em>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <strong>Shampoo the scalp, not the length</strong>
+                <span>Apply OUAI Fine Hair Shampoo to your scalp only — the sulfate-free formula emulsifies sebum and product buildup without stripping. Allow rinse water to carry foam through the lengths. Shampooing the full shaft repeatedly depletes the cuticle's natural lipid layer.</span>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <strong>Condition ends first, then mid-lengths</strong>
+                <span>Apply conditioner to the driest, most damaged section first — the ends. Work upward to mid-lengths. Keep conditioner away from roots entirely unless your scalp is chronically dry. Leave on for a minimum of three minutes; a shower cap and warmth doubles penetration for high porosity hair.</span>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <strong>Cold rinse to seal the cuticle</strong>
+                <span>A 15–20 second cold rinse closes the raised cuticle layer, locks in moisture, and creates the smooth surface that reflects light as shine. This single step accounts for a significant share of the difference between hair that looks conditioned and hair that simply is conditioned but does not appear so.</span>
+              </div>
+            </li>
+            <li class="step">
+              <div class="step-num">5</div>
+              <div class="step-content">
+                <strong>Olaplex No.7 on towel-dried, damp hair</strong>
+                <span>One to two drops maximum. Emulsify between palms and work through mid-lengths to ends. Do not rinse. Style as normal or air-dry. The bonding complex continues working after application — repairing disulfide bonds over the following hours as the hair dries.</span>
+                <em>Less is genuinely more — excess causes buildup even with this lightweight formula</em>
+              </div>
+            </li>
+          </ol>
+
+          <blockquote>"Hair health is a long game. One excellent treatment cannot undo months of damage — but eight weeks of the right routine will produce results that feel genuinely transformative."</blockquote>
+        </div>
+        <aside class="sidebar reveal-right">
+          <div class="sidebar-block">
+            <h4 class="sidebar-heading">✦ Tutorial Products</h4>
+            <ul class="sidebar-link-list">
+              <li><a href="https://amzn.to/4sXTvPw" target="_blank" rel="noopener noreferrer">Olaplex No.7 Bonding Oil <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+              <li><a href="https://amzn.to/4sXThYG" target="_blank" rel="noopener noreferrer">Root Replenish Scalp Serum <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+              <li><a href="https://amzn.to/4tnHiUJ" target="_blank" rel="noopener noreferrer">OUAI Fine Hair Shampoo Set <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+              <li><a href="https://amzn.to/4moHeRL" target="_blank" rel="noopener noreferrer">Nutrafol Women's Balance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+            </ul>
+          </div>
+          <div class="sidebar-block">
+            <h4 class="sidebar-heading">Hair Health Checklist</h4>
+            <ul class="tip-list">
+              <li>Detangle dry hair before washing — never wet</li>
+              <li>Microfibre towel only — regular towels cause significant friction damage</li>
+              <li>Heat tools: 160°C fine hair · 180°C medium · 200°C coarse/thick maximum</li>
+              <li>Silk pillowcase reduces friction breakage by up to 40% overnight</li>
+              <li>Trim every 8–12 weeks — split ends travel upward if left untreated</li>
+              <li>Clean your hairbrush weekly — it harbours bacteria and redeposits buildup</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       SECTION 3 — SKINCARE GUIDE
+  ══════════════════════════════════════════════════════ -->
+  <section class="section" id="skincare-guide">
+    <div class="container">
+
+      <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Skincare Guide</span></div>
+      <h2 class="section-heading reveal">Skin That Speaks for Itself</h2>
+      <p class="section-sub reveal">A definitive guide to building routines that work — backed by dermatology, not trends.</p>
+
+      <!-- Text banner — no image -->
+      <div class="guide-banner reveal">
+        <div class="guide-banner-inner">
+          <p class="guide-banner-tag">✦ The Shahi Method</p>
+          <h2 class="guide-banner-title">Build a Routine That Works While You Sleep</h2>
+          <p class="guide-banner-text">Skin undergoes its most active repair cycle between midnight and 4am — cell turnover accelerates, collagen synthesis peaks, and inflammation markers decrease. The products you apply in the evening do not just sit on the surface. They interact with living biological processes. Understanding this changes how you think about every product in your routine.</p>
+          <div class="guide-banner-stats">
+            <div>
+              <div class="gstat-num">4×</div>
+              <div class="gstat-label">faster cell renewal<br/>during sleep vs. waking hours</div>
+            </div>
+            <div>
+              <div class="gstat-num">80%</div>
+              <div class="gstat-label">of visible aging caused<br/>by UV exposure (not genetics)</div>
+            </div>
+            <div>
+              <div class="gstat-num">12 wk</div>
+              <div class="gstat-label">minimum before retinol<br/>produces visible results</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Three pillars -->
+      <div class="pillars-grid">
+        <div class="pillar reveal" style="transition-delay:0s">
+          <div class="pillar-icon">🌿</div>
+          <h3 class="pillar-title">Know Your Skin Type — And Its Current Condition</h3>
+          <p class="pillar-text">Skin type (oily, dry, combination, sensitive) is genetic and relatively stable. Skin condition (dehydration, sensitisation, congestion, hyperpigmentation) is situational and treatable. Most people confuse the two — and build routines targeting the wrong thing. Oily skin can be severely dehydrated. Dry skin can be overloaded with occlusive products. The first step in any routine is an honest assessment of what is actually happening, not what you have always assumed.</p>
+        </div>
+        <div class="pillar reveal" style="transition-delay:.1s">
+          <div class="pillar-icon">⚗️</div>
+          <h3 class="pillar-title">Understand Actives — What They Do and When to Use Them</h3>
+          <p class="pillar-text">Actives are the functional ingredients in a skincare routine — the ones that produce measurable change in the skin. Retinoids increase cell turnover. AHAs and BHAs exfoliate chemically. Vitamin C brightens and protects. Niacinamide regulates sebum and strengthens the barrier. The mistake most people make is using too many simultaneously. Actives require pH-specific conditions to work, interact with each other in complex ways, and take weeks to show results. Introduce one at a time, give it eight weeks, and evaluate honestly.</p>
+        </div>
+        <div class="pillar reveal" style="transition-delay:.2s">
+          <div class="pillar-icon">🛡️</div>
+          <h3 class="pillar-title">Protection Is the Most Important Step You're Probably Skipping</h3>
+          <p class="pillar-text">UV radiation is responsible for up to 80% of the visible signs of skin aging — more than genetics, diet, or stress combined. Fine lines, hyperpigmentation, loss of firmness, rough texture, and broken capillaries are overwhelmingly caused by cumulative, unprotected UV exposure. No serum, no retinol, no treatment can reverse decades of this damage — but daily broad-spectrum SPF 30–50, applied correctly, prevents the accumulation from occurring in the first place. This is the single most effective anti-aging investment available.</p>
+        </div>
+      </div>
+
+      <!-- AM/PM Routine -->
+      <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">The Routine</span></div>
+      <h3 class="section-heading reveal" style="font-size:2rem;margin-bottom:10px;">Morning &amp; Evening, Simplified</h3>
+      <p class="section-sub reveal" style="margin-bottom:36px;">Two routines. Seven steps total. Every step included because it earns its place.</p>
+      <div class="routine-grid">
+        <div class="routine-block reveal-left">
+          <div class="routine-header">
+            <div class="routine-icon">☀️</div>
+            <div>
+              <h4 class="routine-title">Morning Routine</h4>
+              <p class="routine-sub">Protect · Hydrate · Defend</p>
+            </div>
+          </div>
+          <div class="routine-step">
+            <div class="rnum am">1</div>
+            <div class="routine-step-body">
+              <strong>Gentle Amino Acid Cleanser</strong>
+              <span>Removes overnight sebum and residue without disrupting the acid mantle. Amino acid surfactants cleanse effectively at a pH of 5–6, unlike most conventional cleansers that sit at pH 8+.</span>
+              <em>Lukewarm water only — heat above 40°C degrades the skin barrier</em>
+            </div>
+          </div>
+          <div class="routine-step">
+            <div class="rnum am">2</div>
+            <div class="routine-step-body">
+              <strong>Vitamin C Serum (L-Ascorbic Acid 10–15%)</strong>
+              <span>Applied to slightly damp skin for better absorption. Neutralises free radicals before UV exposure amplifies them. Most effective in the morning because it works synergistically with sunscreen to enhance photoprotection.</span>
+              <em>Allow 60 seconds to absorb before layering — oxidised Vitamin C (turned orange) should be discarded</em>
+            </div>
+          </div>
+          <div class="routine-step">
+            <div class="rnum am">3</div>
+            <div class="routine-step-body">
+              <strong>Lightweight Moisturiser</strong>
+              <span>Seals in the serum and creates a smooth, even base for SPF application. Gel-cream or water-gel textures for oily skin; emollient creams for dry or combination types.</span>
+            </div>
+          </div>
+          <div class="routine-step">
+            <div class="rnum am">4</div>
+            <div class="routine-step-body">
+              <strong>Broad-Spectrum SPF 30–50</strong>
+              <span>The final, non-negotiable step. Two finger-lengths worth for face and neck. Reapply every two hours in direct sun exposure. Mineral formulas (zinc oxide, titanium dioxide) are safer for sensitised and post-procedure skin.</span>
+              <em>Nothing else in this routine matters if this step is skipped</em>
+            </div>
+          </div>
+        </div>
+        <div class="routine-block reveal-right">
+          <div class="routine-header">
+            <div class="routine-icon">🌙</div>
+            <div>
+              <h4 class="routine-title">Evening Routine</h4>
+              <p class="routine-sub">Repair · Renew · Restore</p>
+            </div>
+          </div>
+          <div class="routine-step">
+            <div class="rnum pm">1</div>
+            <div class="routine-step-body">
+              <strong>Double Cleanse</strong>
+              <span>An oil-based cleanser first to dissolve SPF, makeup, and environmental pollutants. A water-based cleanser second to remove impurities from the skin itself. Attempting to remove SPF with water-based cleanser alone leaves a significant residue film on the skin that blocks subsequent actives.</span>
+            </div>
+          </div>
+          <div class="routine-step">
+            <div class="rnum pm">2</div>
+            <div class="routine-step-body">
+              <strong>Treatment Active (Retinol or AHA — not both)</strong>
+              <span>Begin retinol at the lowest effective concentration, two nights per week, and build tolerance over 6–8 weeks before increasing frequency. Never use AHAs and retinol on the same night — the combination significantly increases irritation and sensitisation risk.</span>
+              <em>Apply to completely dry skin — moisture accelerates penetration and increases irritation on retinol nights</em>
+            </div>
+          </div>
+          <div class="routine-step">
+            <div class="rnum pm">3</div>
+            <div class="routine-step-body">
+              <strong>Night Mask or Rich Moisturiser</strong>
+              <span>City Beauty Microbiome Night Mask supports the skin's bacterial ecosystem while a targeted active blend works overnight to reduce fine lines and improve texture. On non-retinol nights, a barrier-repair cream with ceramides and fatty acids maximises overnight recovery.</span>
+              <em>Sleeping on a silk pillowcase preserves the product and prevents mechanical compression lines</em>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ingredients -->
+      <div class="ingredients">
+        <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">Ingredient Glossary</span></div>
+        <h3 class="section-heading reveal" style="font-size:2rem;margin-bottom:36px;">The Actives That Actually Work</h3>
+        <div class="ingredient-grid">
+          <div class="ingredient reveal" style="transition-delay:0s">
+            <div class="ingredient-icon">🍊</div>
+            <h4 class="ingredient-name">Vitamin C</h4>
+            <p class="ingredient-desc">Brightens uneven tone, stimulates collagen production, and neutralises UV-triggered free radicals. Most effective as L-Ascorbic Acid at 10–20%, pH below 3.5. Requires opaque, airtight packaging to prevent oxidation.</p>
+            <p class="ingredient-type">Best for: Dull, uneven, sun-damaged skin</p>
+          </div>
+          <div class="ingredient reveal" style="transition-delay:.1s">
+            <div class="ingredient-icon">⚡</div>
+            <h4 class="ingredient-name">Retinol</h4>
+            <p class="ingredient-desc">The gold-standard anti-aging active. Accelerates cell turnover, reduces fine lines, fades hyperpigmentation, and prevents comedones. Results require patience — meaningful change appears at 12 weeks minimum. Prescription tretinoin is 20x more potent than cosmetic retinol.</p>
+            <p class="ingredient-type">Best for: Aging, acne-prone, textured skin</p>
+          </div>
+          <div class="ingredient reveal" style="transition-delay:.2s">
+            <div class="ingredient-icon">💧</div>
+            <h4 class="ingredient-name">Hyaluronic Acid</h4>
+            <p class="ingredient-desc">Holds up to 1,000x its weight in water, drawing moisture from the environment into the skin. Apply to damp skin and seal with a moisturiser — on dry skin in low-humidity environments it draws moisture from the dermis instead, worsening dryness.</p>
+            <p class="ingredient-type">Best for: All skin types, especially dehydrated</p>
+          </div>
+          <div class="ingredient reveal" style="transition-delay:.3s">
+            <div class="ingredient-icon">🛡️</div>
+            <h4 class="ingredient-name">Niacinamide (B3)</h4>
+            <p class="ingredient-desc">Strengthens the skin barrier by increasing ceramide synthesis, minimises pore appearance, reduces post-inflammatory hyperpigmentation, and regulates sebum production. One of the most versatile and well-tolerated actives at 2–10%.</p>
+            <p class="ingredient-type">Best for: Oily, sensitive, combination skin</p>
+          </div>
+          <div class="ingredient reveal" style="transition-delay:.4s">
+            <div class="ingredient-icon">🌱</div>
+            <h4 class="ingredient-name">Ceramides</h4>
+            <p class="ingredient-desc">Lipid molecules comprising 50% of the skin's natural barrier. Depleted by harsh cleansers, over-exfoliation, and environmental stress. Ceramide-rich formulas are the most evidence-based approach to repairing compromised barrier function and reducing transepidermal water loss.</p>
+            <p class="ingredient-type">Best for: Sensitive, dry, barrier-damaged skin</p>
+          </div>
+          <div class="ingredient reveal" style="transition-delay:.5s">
+            <div class="ingredient-icon">🍵</div>
+            <h4 class="ingredient-name">Fermented Ginseng</h4>
+            <p class="ingredient-desc">Korean skincare's most studied heritage ingredient. Fermentation increases bioavailability of the active ginsenosides by breaking down large molecules. Clinical studies show improvements in firmness, radiance, and wrinkle depth after 8 weeks of consistent use.</p>
+            <p class="ingredient-type">Best for: Mature, dull, firming-focused routines</p>
+          </div>
+          <div class="ingredient reveal" style="transition-delay:.6s">
+            <div class="ingredient-icon">🔬</div>
+            <h4 class="ingredient-name">AHA (Glycolic / Lactic)</h4>
+            <p class="ingredient-desc">Chemical exfoliants that dissolve the bonds between dead skin cells. Glycolic acid (smallest molecule) penetrates deepest for visible resurfacing. Lactic acid suits sensitive skin and adds mild hydration alongside exfoliation. Evening use only — increases photosensitivity significantly.</p>
+            <p class="ingredient-type">Best for: Textured, dull, hyperpigmented skin</p>
+          </div>
+          <div class="ingredient reveal" style="transition-delay:.7s">
+            <div class="ingredient-icon">🌙</div>
+            <h4 class="ingredient-name">Peptides</h4>
+            <p class="ingredient-desc">Short amino acid chains that act as cellular messengers, signalling the skin to produce collagen and elastin. Unlike retinol, peptides cause zero irritation and can be used by every skin type daily. Work synergistically with retinol — the two used on alternating nights accelerates results beyond either alone.</p>
+            <p class="ingredient-type">Best for: Aging, fine lines, loss of firmness</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Myths & Facts -->
+      <div class="myths-wrap reveal">
+        <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Myths vs Facts</span></div>
+        <h3 class="section-heading" style="font-size:2rem;margin-bottom:6px;">Common Skincare Myths — Debunked</h3>
+        <p style="font-size:14px;color:var(--text-soft);">What the internet tells you versus what dermatology actually confirms.</p>
+        <div class="myth-grid">
+          <div class="myth-card">
+            <div class="myth-card-header myth-bg"><span class="myth-badge myth">Myth</span><span class="myth-claim">"Natural ingredients are always safer than synthetic ones."</span></div>
+            <div class="myth-card-body">Poison ivy is natural. Formaldehyde occurs naturally in fruit. Safety is determined by concentration, formulation, and individual skin response — not origin. Some of the most gentle, well-tolerated skincare ingredients are synthetically derived specifically for biocompatibility. Dismissing an ingredient because it has a long chemical name is not health consciousness — it is chemophobia.</div>
+          </div>
+          <div class="myth-card">
+            <div class="myth-card-header fact-bg"><span class="myth-badge fact">Fact</span><span class="myth-claim">Vitamin C and niacinamide can be used together safely.</span></div>
+            <div class="myth-card-body">The old concern that niacinamide would convert Vitamin C into niacin (causing flushing) was based on extreme laboratory heat conditions with no relevance to normal skincare use. Multiple peer-reviewed studies have confirmed these two actives are not only safe when layered but work synergistically — niacinamide helping to stabilise Vitamin C on the skin surface.</div>
+          </div>
+          <div class="myth-card">
+            <div class="myth-card-header myth-bg"><span class="myth-badge myth">Myth</span><span class="myth-claim">"Oily skin doesn't need moisturiser."</span></div>
+            <div class="myth-card-body">Oiliness (sebum production) and hydration (water content) are completely separate properties controlled by different mechanisms. Oily skin is frequently dehydrated. When you skip moisturiser, the skin senses surface dryness and compensates by producing more sebum — making oiliness progressively worse. A lightweight, non-comedogenic gel moisturiser is non-negotiable for oily skin types.</div>
+          </div>
+          <div class="myth-card">
+            <div class="myth-card-header fact-bg"><span class="myth-badge fact">Fact</span><span class="myth-claim">SPF is the most effective anti-aging product you can buy.</span></div>
+            <div class="myth-card-body">UV radiation is responsible for up to 80% of visible skin aging — more than genetics, diet, pollution, or stress. The cumulative effect of daily, unprotected UV exposure adds up even on overcast days and through glass. No retinol, no peptide serum, no treatment can reverse decades of this damage. Daily SPF, started early and maintained consistently, simply prevents it from occurring in the first place.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full skincare guide with sidebar -->
+      <div style="margin-top:80px;">
+        <div class="eyebrow reveal"><div class="eyebrow-line"></div><span class="eyebrow-text">The Full Guide</span></div>
+        <div class="guide-deep">
+          <div class="guide-body reveal-left">
+            <h3>The Skin Barrier: The One Concept That Changes Everything</h3>
+            <p>The skin barrier — or stratum corneum — is a complex, living system of cells and lipids that serves as the primary interface between your body and the external environment. It prevents transepidermal water loss, blocks pathogens and allergens, and maintains the slightly acidic pH that keeps your skin's microbiome balanced.</p>
+            <p>When the barrier is intact, skin appears plump, calm, and luminous. When it is compromised — through over-cleansing, over-exfoliation, harsh actives, or environmental stress — skin becomes sensitised, reactive, flaky, prone to breakouts, and almost impossible to treat effectively, because every active you apply is now entering through an impaired structure.</p>
+            <p>The majority of skin complaints that people bring to dermatologists — unexplained dryness, sudden sensitivity, persistent redness, products that worked then stopped working — trace back to a compromised barrier. Before introducing any new active, the most important question is: is my barrier intact? The answer determines everything else.</p>
+            <blockquote>"A healthy skin barrier is not a starting condition — it is an ongoing achievement that requires deliberate maintenance."</blockquote>
+
+            <h3>The Right Order for Layering Products</h3>
+            <p>Skincare layering follows a simple logic: thinnest to thickest, lowest pH to highest pH, water-based before oil-based. This is not arbitrary — it ensures that actives are applied in conditions where they function correctly, and that thicker products do not block thinner ones from reaching the skin.</p>
+            <ul>
+              <li>Cleanse first — always on clean, dry skin</li>
+              <li>Toners or essences next if used — they prep skin for subsequent absorption</li>
+              <li>Actives (Vitamin C in the morning; AHAs or retinol at night) — applied to near-dry skin for correct pH function</li>
+              <li>Hydrating serum (hyaluronic acid) — on slightly damp skin to trap moisture effectively</li>
+              <li>Moisturiser — seals everything in, provides occlusivity, completes the barrier</li>
+              <li>SPF in the morning only — the final layer, applied generously</li>
+            </ul>
+
+            <h3>When to See a Dermatologist</h3>
+            <p>No amount of product knowledge replaces professional diagnosis for specific conditions. If you are experiencing persistent acne that has not responded to a consistent routine after three months, sudden unexplained rashes or hives, rapid changes in mole appearance, or extreme barrier disruption that does not resolve with basic barrier-repair products, the correct next step is a dermatologist — not a new product.</p>
+            <p>The most empowering thing about building genuine skincare knowledge is knowing exactly where its limits are. Over-the-counter products are exceptional for maintenance, prevention, and gradual improvement. Prescription treatment, medical-grade procedures, and professional diagnosis exist in a different category entirely — and knowing when you need them is itself a form of skin literacy.</p>
+          </div>
+          <aside class="sidebar reveal-right">
+            <div class="sidebar-block">
+              <h4 class="sidebar-heading">✦ Skincare Products</h4>
+              <ul class="sidebar-link-list">
+                <li><a href="https://amzn.to/48uoryD" target="_blank" rel="noopener noreferrer">Amino Acid Face Wash <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+                <li><a href="https://amzn.to/4tG6HbO" target="_blank" rel="noopener noreferrer">Ginseng Anti-Aging Set <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+                <li><a href="https://amzn.to/41rg6YM" target="_blank" rel="noopener noreferrer">Microbiome Night Mask <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></li>
+              </ul>
+            </div>
+            <div class="sidebar-block">
+              <h4 class="sidebar-heading">Barrier Repair Checklist</h4>
+              <ul class="tip-list">
+                <li>Switch to a gentle, low-pH cleanser immediately</li>
+                <li>Stop all actives for 2 weeks minimum — let skin recover</li>
+                <li>Use only ceramide + fatty acid + cholesterol moisturiser</li>
+                <li>Reintroduce actives one at a time, starting at lowest frequency</li>
+                <li>Avoid physical exfoliation entirely during repair phase</li>
+                <li>Track reactions in a simple notes app — patterns emerge quickly</li>
+              </ul>
+            </div>
+            <div class="sidebar-block">
+              <h4 class="sidebar-heading">Recommended Reading</h4>
+              <ul class="tip-list">
+                <li>"The Skincare Bible" — Dr Anjali Mahto</li>
+                <li>"Skin Rules" — Dr Debra Jaliman</li>
+                <li>AAD (American Academy of Dermatology) public resources</li>
+                <li>Paula's Choice ingredient dictionary — free, evidence-based</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════ -->
+  <footer class="blog-footer">
+    <div class="footer-logo">Shahi<span>Beauty</span></div>
+    <p class="footer-note">ShahiBeauty is an Amazon affiliate. We earn a small commission on qualifying purchases at no extra cost to you.</p>
+    <a href="index.html" class="footer-back">
+      Back to Shop
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </footer>
+
+  <script>
+    // Particle generator
+    (function() {
+      const c = document.getElementById('particles');
+      for (let i = 0; i < 16; i++) {
+        const s = document.createElement('span');
+        s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*4}s;animation-duration:${2+Math.random()*3}s;opacity:${0.15+Math.random()*0.4};width:${1+Math.random()*2}px;height:${1+Math.random()*2}px;`;
+        c.appendChild(s);
+      }
+    })();
+
+    // Scroll reveal
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
